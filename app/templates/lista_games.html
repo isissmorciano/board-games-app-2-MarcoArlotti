@@ -1,0 +1,7 @@
+{{ extdend "base.html" }}
+
+{% block content %}
+    {% for game in games %}
+        <h1>{{ game.nome }}</h1>
+    {% endfor %}
+{% endblock %}

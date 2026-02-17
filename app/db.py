@@ -25,3 +25,12 @@ def init_app(app):
     """Registra la funzione di chiusura automatica."""
     # Dice a Flask: "Quando hai finito di caricare la pagina, chiudi sempre il DB"
     app.teardown_appcontext(close_db)
+
+def salva_gioco(n_player_max, durata, categoria):
+    """Salva un nuovo gioco da tavolo nel database."""
+    db = get_db()
+    db.execute(
+        'INSERT INTO giochi (n_player_max, durata, categoria) VALUES (?, ?, ?)',
+        (n_player_max, durata, categoria)
+    )
+    db.commit()
