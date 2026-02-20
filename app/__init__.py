@@ -25,9 +25,6 @@ def create_app():
     # --- REGISTRAZIONE BLUEPRINTS ---
     from . import main
     app.register_blueprint(main.bp)
-    
-    from . import auth
-    app.register_blueprint(auth.bp)
     # --------------------------------
 
     return app
