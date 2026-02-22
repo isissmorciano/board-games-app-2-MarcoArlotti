@@ -1,7 +1,12 @@
 {% extends "index.html" %}
 
 {% block content %}
-    {% for game in games %}
-        <h1>{{ game.nome }}</h1>
+    {% for game in GIOCHI %}
+        <hr>
+        <h3>NOME GIOCO: {{ game.nome }}</h3>
+        <p>NUMERO MAX GIOCATORI: {{ game.numero_giocatori_massimo }}</p>
+        <p>DURATA MEDIA: {{ game.durata_media }}</p>
+        <p>CATEGORIA: {{ game.categoria }}</p>
+        <hr>
     {% endfor %}
 {% endblock %}
