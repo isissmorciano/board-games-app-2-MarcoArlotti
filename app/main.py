@@ -32,3 +32,18 @@ def create_game():
         return redirect(url_for('main.home'))
 
     return render_template('create_game.html')
+
+@b.route('/registra')
+def registra_partita():
+    if request.method == 'GET':
+        return render_template('registra_partita.html')
+    if request.method == 'POST':
+        nome = request.form['nome']
+        n_max_player = request.form['n_max_player']
+        durata = request.form['durata']
+        categoria = request.form['categoria']
+
+        salva_gioco(nome, n_max_player, durata, categoria)
+        return redirect(url_for('main.home'))
+
+    return render_template('registra_partita.html')

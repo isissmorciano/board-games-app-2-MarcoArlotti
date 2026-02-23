@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block content %}
+    {% for partita in PARTITE %}
+        <hr>
+        <h3>NOME GIOCO: {{ partita.nome }}</h3>
+        <p>DATA: {{ partita.data }}</p>
+        <p>VINCITORE: {{ partita.vincitore }}</p>
+        <p>PUNTEGGIO VINCITORE: {{ partita.punteggio_vincitore }}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}
