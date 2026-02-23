@@ -3,10 +3,13 @@
 {% block content %}
     {% for game in GIOCHI %}
         <hr>
-        <h3>NOME GIOCO: {{ game.nome }}</h3>
+        <h2><a href="{{url_for('main.partite', id=game['id'])}}">NOME GIOCO: {{ game.nome }}</a></h2>
         <p>NUMERO MAX GIOCATORI: {{ game.numero_giocatori_massimo }}</p>
         <p>DURATA MEDIA: {{ game.durata_media }}</p>
         <p>CATEGORIA: {{ game.categoria }}</p>
+
+        
+
         <hr>
     {% endfor %}
 {% endblock %}
