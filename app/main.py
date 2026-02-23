@@ -1,7 +1,7 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
-from app.repository.repo import salva_gioco, prendi_giochi
+from app.repository.repo import salva_gioco, prendi_giochi, lista_partite
 from app.db import get_db
 # from app.repository.repo import salva_gioco
 
@@ -33,7 +33,7 @@ def create_game():
 
     return render_template('create_game.html')
 
-@b.route('/registra')
+@bp.route('/registra')
 def registra_partita():
     if request.method == 'GET':
         return render_template('registra_partita.html')
@@ -47,3 +47,8 @@ def registra_partita():
         return redirect(url_for('main.home'))
 
     return render_template('registra_partita.html')
+
+@bp.route('/giochi/<int:id>')
+def partite(id):
+    partite = lista_partite(id)
+    return render_template('mostra_partite.html', partite=partite)

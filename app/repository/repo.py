@@ -22,3 +22,18 @@ def prendi_giochi():
 
     giochi = db.execute(query).fetchall()
     return [dict(gioco) for gioco in giochi]
+
+def lista_partite(id):
+    db = get_db()
+    query = """
+    SELECT *
+    FROM partite
+    JOIN giochi ON partite.gioco_id = giochi.id
+    WHERE partite.gioco_id = ?
+    ORDER BY partite.gioco_id;
+    """
+
+    partite = db.execute(query, (id,)).fetchall()
+    if partite:
+        return [dict(partita) for partita in partite]
+    return partite
