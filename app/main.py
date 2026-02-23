@@ -1,7 +1,7 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
-from app.repository.repo import salva_gioco, prendi_giochi, lista_partite
+from app.repository.repo import salva_gioco, prendi_giochi, prendi_utenti, lista_partite, aggiorna_preferito
 from app.db import get_db
 # from app.repository.repo import salva_gioco
 
@@ -13,10 +13,23 @@ def home():
     return render_template('home.html')
 
 
-@bp.route('/giochi')
+@bp.route('/giochi',  methods=['GET', 'POST'])
 def wiew():
-    GIOCHI = prendi_giochi()
-    return render_template('lista_games.html', GIOCHI=GIOCHI)
+    if request.method == 'GET':
+        GIOCHI = prendi_giochi()
+        UTENTI = prendi_utenti()
+        return render_template('lista_games.html', GIOCHI=GIOCHI, UTENTI=UTENTI)
+    if request.method == 'POST':
+        GIOCHI = prendi_giochi()
+        UTENTI = prendi_utenti()
+
+        utente_scelto = request.form["utente_scelto"]
+        gioco_id = request.form["preferito"]
+
+        aggiorna_preferito(utente_scelto,gioco_id)
+
+        return render_template('lista_games.html',utente_scelto=utente_scelto, GIOCHI=GIOCHI, UTENTI=UTENTI)
+    
 
 @bp.route('/create', methods=['GET', 'POST'])
 def create_game():

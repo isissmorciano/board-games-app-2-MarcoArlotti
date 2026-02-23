@@ -23,6 +23,16 @@ def prendi_giochi():
     giochi = db.execute(query).fetchall()
     return [dict(gioco) for gioco in giochi]
 
+def prendi_utenti():
+    db = get_db()
+    query = """
+    SELECT *
+    FROM utenti;
+    """
+
+    utenti = db.execute(query).fetchall()
+    return [dict(utente) for utente in utenti]
+
 def lista_partite(id):
     db = get_db()
     query = """
@@ -37,3 +47,10 @@ def lista_partite(id):
     if partite:
         return [dict(partita) for partita in partite]
     return partite
+
+def aggiorna_preferito(utente_scelto,gioco_id):
+    db = get_db()
+    query = """
+    SELECT 
+    FROM utenti;
+    """

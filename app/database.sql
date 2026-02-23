@@ -1,5 +1,7 @@
 DROP TABLE IF EXISTS partite;
 DROP TABLE IF EXISTS giochi;
+DROP TABLE IF EXISTS preferiti;
+DROP TABLE IF EXISTS utenti;
 
 CREATE TABLE giochi (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -7,6 +9,20 @@ CREATE TABLE giochi (
   numero_giocatori_massimo INTEGER NOT NULL,
   durata_media INTEGER NOT NULL, -- durata in minuti
   categoria TEXT NOT NULL
+);
+
+CREATE TABLE utenti (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT NOT NULL
+);
+
+CREATE TABLE preferiti (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  gioco_id INTEGER NOT NULL,
+  utente_id INTEGER NOT NULL,
+  valore BOOLEAN NOT NULL DEFAULT FALSE,
+  FOREIGN KEY (utente_id) REFERENCES utenti (id),
+  FOREIGN KEY (gioco_id) REFERENCES giochi (id)
 );
 
 CREATE TABLE partite (
